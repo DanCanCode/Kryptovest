@@ -17,6 +17,7 @@
     "hardhat": "^2.12.6"
   },
   "dependencies": {
+    "dotenv": "^16.0.3",
     "ethereum-waffle": "^4.0.9"
   }
 }

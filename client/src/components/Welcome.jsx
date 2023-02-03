@@ -94,8 +94,10 @@ const Welcome = () => {
               </div>
 
               <div>
-                <p className="font-light text-white text-sm">
-                  0xgfdgfcf...jhhjhjjh
+                <p className="font-light text-white text-sm truncate">
+                  {`${currentAccount.slice(0, 5)}...${currentAccount.slice(
+                    currentAccount.length - 4
+                  )}`}
                 </p>
                 <p className="font-semibold text-white text-lg mt-1">
                   Ethereum

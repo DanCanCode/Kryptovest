@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 import dummyData from "../utils/dummyData";
 import useFetch from "../hooks/useFetch";
+import { motion } from "framer-motion";
 
 const TransactionCard = ({
   addressTo,
@@ -14,7 +15,11 @@ const TransactionCard = ({
 }) => {
   const gifUrl = useFetch({ keyword });
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
       className="bg-[#181918] m-4 flex flex-1 2xl:min-w-[450px] 2xl:max-w-[500px] 
     sm:min-w-[270px] sm:max-w-[300px] flex-col p-3 rounded-md hover:shadow-2xl"
     >
@@ -61,7 +66,7 @@ const TransactionCard = ({
           <p className="text-[#37c7da] font-bold">{timestamp}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

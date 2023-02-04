@@ -7,6 +7,7 @@
 }
 
 body {
+  letter-spacing: 0.5px;
   margin: 0;
   font-family: "Muli", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -16,6 +17,7 @@ body {
 h1,
 h2,
 h3 {
+  letter-spacing: 2px;
   font-family: "Space Mono", monospace;
 }
 
@@ -71,9 +73,10 @@ h3 {
 }
 
 .eth-card {
+  background: linear-gradient(to right, #283048, #859398);
   /* background-image: linear-gradient(to right, #8e2de2, #4a00e0); */
   /* background-image: radial-gradient(circle farthest-side, #fceabb, #f8b500); */
-  background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+  /* background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e); */
   /* background-color: hsla(0, 100%, 50%, 1); 
      background-image: radial-gradient(
       at 40% 20%,

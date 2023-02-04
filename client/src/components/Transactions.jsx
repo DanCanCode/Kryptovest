@@ -63,7 +63,9 @@ const TransactionCard = ({
         />
 
         <div className="bg-black p-3 px-5 w-max rounded-3xl -mt-5 shadow-2xl">
-          <p className="text-[#37c7da] font-bold">{timestamp}</p>
+          <h3 className="text-[#ce0006] font-bold tracking-normal">
+            {timestamp}
+          </h3>
         </div>
       </div>
     </motion.div>
@@ -74,7 +76,7 @@ const Transactions = () => {
   const { currentAccount, transactions } = useContext(TransactionContext);
 
   return (
-    <div className="flex  w-full justify-center items-center 2xl:p-20 gradient-bg-transactions">
+    <div className="flex  w-full justify-center items-center 2xl:p-20 ">
       <div className="flex flex-col md:p-12 py-12 px-4">
         {currentAccount ? (
           <h3 className="text-white text-3xl text-center py-2">

@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
-import { BsInfoCircle } from "react-icons/bs";
+import { BsInfoCircle, BsShieldFillCheck } from "react-icons/bs";
+import { SlGlobe } from "react-icons/sl";
 import { Typewriter } from "react-simple-typewriter";
+import { motion } from "framer-motion";
 
 import { TransactionContext } from "../context/TransactionContext";
 
@@ -19,6 +20,27 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
     onChange={(e) => handleChange(e, name)}
     className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
   />
+);
+
+const ServiceCard = ({ color, title, icon, subtitle, order }) => (
+  <motion.div
+    initial={{ opacity: 0, x: -200 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ duration: order }}
+    viewport={{ once: true }}
+    className="flex flex-row justify-start items-center white-glassmorphism p-3 m-2 hover:shadow-xl"
+  >
+    <div
+      className={`w-10 h-10 rounded-full flex justify-center items-center ${color}`}
+    >
+      {icon}
+    </div>
+
+    <div className="ml-5 flex flex-col flex-1">
+      <h1 className=" text-white text-md">{title}</h1>
+      <p className="mt-1 text-white text-xs md:9/12">{subtitle}</p>
+    </div>
+  </motion.div>
 );
 
 const Welcome = () => {
@@ -43,8 +65,20 @@ const Welcome = () => {
     <div className="flex w-full justify-center items-center">
       <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
         <div className="flex flex-1 justify-start flex-col mf:mr-10">
-          <h1 className="text-3xl text-white sm:text-5xl  py-1">
-            Send Crypto <br /> across the world
+          <h1 className="text-3xl text-white sm:text-4xl  py-1">
+            Send Crypto
+            <br />
+            <Typewriter
+              words={[
+                "to your friends.",
+                "to your coworkers.",
+                "across the world.",
+              ]}
+              cursor
+              cursorStyle="|"
+              typeSpeed={100}
+              delaySpeed={1000}
+            />
           </h1>
 
           <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">
@@ -64,7 +98,7 @@ const Welcome = () => {
             </button>
           )}
 
-          <div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
+          {/* <div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
             <div className={`rounded-tl-2xl ${commonStyles}`}>Reliability</div>
             <div
               className={`rounded-tr-2xl sm:rounded-tr-none ${commonStyles}`}
@@ -80,6 +114,34 @@ const Welcome = () => {
               Low fees
             </div>
             <div className={`rounded-br-2xl ${commonStyles}`}>Blockchain</div>
+          </div> */}
+
+          <div
+            className={`flex-1 flex flex-col justify-start items-center overflow-hidden ${
+              currentAccount && "mt-5"
+            }`}
+          >
+            <ServiceCard
+              order="1"
+              color="bg-[#2952e3]"
+              title="Secure & Reliable"
+              icon={<BsShieldFillCheck fontSize={21} className="text-white" />}
+              subtitle="Security is guarenteed. We always maintain privacy and the quality of our products."
+            />
+            <ServiceCard
+              order="1.5"
+              color="bg-[#f7a000]"
+              title="Send & Receive Ethereum"
+              icon={<SiEthereum fontSize={21} className="text-white" />}
+              subtitle="Security is guarenteed. We always maintain privacy and the quality of our products."
+            />
+            <ServiceCard
+              order="2"
+              color="bg-[#f84550]"
+              title="Web 3.0 & Blockchain"
+              icon={<SlGlobe fontSize={21} className="text-white" />}
+              subtitle="Security is guarenteed. We always maintain privacy and the quality of our products."
+            />
           </div>
         </div>
 
@@ -87,11 +149,25 @@ const Welcome = () => {
           <div className="p-3 justify-end items-start flex-col rounded-xl h-40 sm:w-72 w-64  my-5 eth-card white-glassmorphism">
             <div className="flex justify-between flex-col w-full h-full">
               <div className="flex justify-between items-start">
-                <div className="w-10 h-10 rounded-full border-2 border-white flex justify-center items-center">
+                <div
+                  className={`w-10 h-10 rounded-full border-2 border-white flex justify-center items-center ${
+                    currentAccount && "animate-pulse"
+                  }`}
+                >
                   <SiEthereum fontSize={21} color="#fff" />
                 </div>
 
-                <BsInfoCircle fontSize={17} color="#fff" />
+                <div className="relative inline-block cursor-pointer group">
+                  <BsInfoCircle fontSize={17} color="#fff" />
+                  <span
+                    className={`group-hover:visible invisible w-[100px] bg-blue-500 text-white text-xs text-center 
+                  rounded-md p-2 absolute z-10 bottom-[150%] left-1/2 ml-[-50px]`}
+                  >
+                    {currentAccount
+                      ? "Wallet connected!"
+                      : "Wallet not connected."}
+                  </span>
+                </div>
               </div>
 
               <div>

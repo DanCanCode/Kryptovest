@@ -2,14 +2,16 @@ import { Navbar, Welcome, Footer, Transactions } from "./components";
 
 const App = () => {
   return (
-    <div className="min-h-screen bg-black">
-      <div>
-        <Navbar />
-        <Welcome />
-      </div>
+    <div className="min-h-screen bg-black bg-[url(https://cdn.steemitimages.com/DQmSRZAtxgWn5o3V2bajUTmqi5kGPGp4zGCMJp5Lc7Mejx4/ETHEREUM%20BLOCKCHAIN.gif)] bg-no-repeat bg-cover">
+      <div className="bg-black/80">
+        <div>
+          <Navbar />
+          <Welcome />
+        </div>
 
-      <Transactions />
-      <Footer />
+        <Transactions />
+        <Footer />
+      </div>
     </div>
   );
 };

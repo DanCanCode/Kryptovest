@@ -146,7 +146,13 @@ const Welcome = () => {
         </div>
 
         <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
-          <div className="p-3 justify-end items-start flex-col rounded-xl h-40 sm:w-72 w-64  my-5 eth-card white-glassmorphism">
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="p-3 justify-end items-start flex-col rounded-xl h-40 sm:w-72 w-64  my-5 eth-card white-glassmorphism"
+          >
             <div className="flex justify-between flex-col w-full h-full">
               <div className="flex justify-between items-start">
                 <div
@@ -181,7 +187,7 @@ const Welcome = () => {
                 </h3>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
             <Input

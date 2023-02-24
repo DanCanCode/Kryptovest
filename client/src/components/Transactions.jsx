@@ -30,7 +30,7 @@ const TransactionCard = ({
             target="_blank"
             rel="nopener noreferrer"
           >
-            <p className="text-white text-base">{`From: ${addressFrom.slice(
+            <p className="text-white hover:text-blue-500 text-base">{`From: ${addressFrom.slice(
               0,
               5
             )}...${addressFrom.slice(addressFrom.length - 4)}`}</p>
@@ -41,7 +41,7 @@ const TransactionCard = ({
             target="_blank"
             rel="nopener noreferrer"
           >
-            <p className="text-white text-base">{`To: ${addressTo.slice(
+            <p className="text-white hover:text-blue-500 text-base">{`To: ${addressTo.slice(
               0,
               5
             )}...${addressTo.slice(addressTo.length - 4)}`}</p>
@@ -63,7 +63,7 @@ const TransactionCard = ({
         />
 
         <div className="bg-black p-3 px-5 w-max rounded-3xl -mt-5 shadow-2xl">
-          <h3 className="text-[#ce0006] font-bold tracking-normal">
+          <h3 className="text-[#22CDF6] font-bold tracking-normal">
             {timestamp}
           </h3>
         </div>
@@ -77,13 +77,13 @@ const Transactions = () => {
 
   return (
     <div className="flex  w-full justify-center items-center 2xl:p-20 ">
-      <div className="flex flex-col md:p-12 py-12 px-4">
+      <div className="flex flex-col items-center md:p-12 py-12 px-4">
         {currentAccount ? (
-          <h3 className="text-white text-3xl text-center py-2">
+          <h3 className="text-white text-3xl text-center py-2 border-b inline-block">
             Latest Transactions
           </h3>
         ) : (
-          <h3 className="text-white text-3xl text-center py-2">
+          <h3 className="text-white text-3xl text-center py-2 ">
             Connect your acount to see latest transactions
           </h3>
         )}

@@ -123,21 +123,21 @@ const Welcome = () => {
           >
             <ServiceCard
               order="1"
-              color="bg-[#2952e3]"
+              color="bg-gradient-to-r from-[#000587] to-[#3468b5]"
               title="Secure & Reliable"
               icon={<BsShieldFillCheck fontSize={21} className="text-white" />}
               subtitle="Security is guarenteed. We always maintain privacy and the quality of our products."
             />
             <ServiceCard
               order="1.5"
-              color="bg-[#f7a000]"
+              color="bg-gradient-to-r from-[#d08200] to-[#ffd143]"
               title="Send & Receive Ethereum"
               icon={<SiEthereum fontSize={21} className="text-white" />}
               subtitle="Security is guarenteed. We always maintain privacy and the quality of our products."
             />
             <ServiceCard
               order="2"
-              color="bg-[#f84550]"
+              color="bg-gradient-to-r from-[#a10000] to-[#ff2424]"
               title="Web 3.0 & Blockchain"
               icon={<SlGlobe fontSize={21} className="text-white" />}
               subtitle="Security is guarenteed. We always maintain privacy and the quality of our products."

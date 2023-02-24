@@ -5,7 +5,15 @@ import { AiOutlineClose } from "react-icons/ai";
 import logo from "../../public/logo.png";
 
 const NavbarItem = ({ title, classProps }) => {
-  return <li className={`mx-4 cursor-pointer ${classProps}`}>{title}</li>;
+  return (
+    <li
+      className={`mx-4 cursor-pointer ${classProps} ${
+        title == "Tutorials" && "line-through cursor-not-allowed"
+      } ${title == "News" && "line-through cursor-not-allowed"}`}
+    >
+      {title}
+    </li>
+  );
 };
 
 const Navbar = () => {

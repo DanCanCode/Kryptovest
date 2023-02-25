@@ -1,9 +1,14 @@
 const Sequelize = require("sequelize");
-const db = new Sequelize(
-  process.env.DATABASE_URL || "postgres://localhost:5432/kryptovest",
+require("dotenv").config();
+
+const sequelize = new Sequelize(
+  "kryptovest",
+  process.env.DB_USERNAME,
+  process.env.DB_PASSWORD,
   {
-    logging: false,
+    host: process.env.DB_HOST,
+    dialect: "postgres",
   }
 );
 
-module.exports = db;
+module.exports = sequelize;

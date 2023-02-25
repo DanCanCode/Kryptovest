@@ -1,9 +1,15 @@
 const Sequelize = require("sequelize");
-const db = require("../database");
+const sequelize = require("../database");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const User = db.define("User", {
+const User = sequelize.define("User", {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true,
+  },
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -16,6 +22,7 @@ const User = db.define("User", {
     allowNull: false,
     validate: {
       notEmpty: true,
+      isEmail: true,
     },
   },
   password: {

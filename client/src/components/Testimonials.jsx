@@ -4,9 +4,11 @@ import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
 const TestimonialCard = ({ image, jobTitle, name, quote, twitter }) => (
   <motion.div
-    initial={{ transform: "scale(0.9)" }}
+    initial={{ transform: "scale(0.9)", opacity: 0 }}
+    whileInView={{ opacity: 1 }}
     whileHover={{ transform: "scale(1.0)" }}
-    transition={{ duration: 0.3 }}
+    transition={{ duration: 0.5 }}
+    viewport={{ once: true }}
     className="bg-[#181918] m-4 mt-10 flex flex-1  2xl:min-w-[450px]  2xl:max-w-[500px]
 sm:min-w-[300px]  sm:max-w-[300px] flex-col p-3 rounded-md hover:shadow-2xl relative"
   >

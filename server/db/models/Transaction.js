@@ -1,7 +1,13 @@
 const Sequelize = require("sequelize");
-const db = require("../database");
+const sequelize = require("../database");
 
-const Transaction = db.define("Transaction", {
+const Transaction = sequelize.define("Transaction", {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true,
+  },
   addressTo: {
     type: Sequelize.STRING,
     allowNull: false,

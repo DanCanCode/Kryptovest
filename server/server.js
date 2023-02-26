@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const cors = require("cors");
-const { sequelize, User, Transaction } = require("./db");
+const { sequelize } = require("./db");
 const app = express();
 module.exports = app;
 
@@ -13,7 +13,6 @@ app.use(cors());
 
 // Include our routes!
 app.use("/api/users", require("./api/users"));
-app.use("/api/transactions", require("./api/transactions"));
 
 // Sends index.html
 app.use("*", (req, res) => {
@@ -31,10 +30,7 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 1337;
 const init = () => {
   try {
-    sequelize
-      .sync({ force: true })
-      .then((data) => console.log(data))
-      .catch((error) => console.error(error));
+    sequelize.sync().catch((error) => console.error(error));
     app.listen(PORT, () => {
       console.log(`Server running on port: http://localhost:${PORT}`);
     });

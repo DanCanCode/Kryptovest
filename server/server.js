@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
 app.use(cors());
 
 // Include our routes!
-app.use("/api/users", require("./api/users"));
+app.use("/api/user", require("./api/user"));
 
 // Sends index.html
 app.use("*", (req, res) => {

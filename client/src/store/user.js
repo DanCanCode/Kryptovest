@@ -38,6 +38,8 @@ const removeUser = (user) => {
 // THUNKS
 export const fetchUser = (user) => {
   return async (dispatch) => {
+    const { data } = axios.post("/api/user", user);
+    dispatch(setUser(data));
     try {
     } catch (error) {
       console.log(error);
@@ -47,6 +49,8 @@ export const fetchUser = (user) => {
 
 export const createUser = (user) => {
   return async (dispatch) => {
+    const { data } = axios.post("/api/user", user);
+    dispatch(addUser(data));
     try {
     } catch (error) {
       console.log(error);
@@ -56,6 +60,7 @@ export const createUser = (user) => {
 
 export const updateUser = (user) => {
   return async (dispatch) => {
+    const { data } = axios.put("/api/user", user);
     try {
     } catch (error) {
       console.log(error);

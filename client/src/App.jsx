@@ -4,22 +4,37 @@ import {
   Footer,
   Transactions,
   Testimonials,
+  Login,
 } from "./components";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
-    <div className="min-h-screen bg-black bg-[url(https://cdn.steemitimages.com/DQmSRZAtxgWn5o3V2bajUTmqi5kGPGp4zGCMJp5Lc7Mejx4/ETHEREUM%20BLOCKCHAIN.gif)] bg-no-repeat bg-cover">
-      <div className="bg-black/80">
-        <div>
+    <BrowserRouter>
+      <div className="bg-black bg-[url(https://cdn.steemitimages.com/DQmSRZAtxgWn5o3V2bajUTmqi5kGPGp4zGCMJp5Lc7Mejx4/ETHEREUM%20BLOCKCHAIN.gif)] bg-no-repeat bg-cover">
+        <div className="min-h-screen bg-black/80">
           <Navbar />
-          <Welcome />
-        </div>
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={
+                <>
+                  <Welcome />
+                  <Testimonials />
+                  <Transactions />
+                </>
+              }
+            />
 
-        <Testimonials />
-        <Transactions />
-        <Footer />
+            <Route path="/login" element={<Login />} />
+
+            {/* <Route path="*" element={<NotFound />} /> */}
+          </Routes>
+          <Footer />
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 };
 

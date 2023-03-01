@@ -40,6 +40,13 @@ const Transaction = sequelize.define("Transaction", {
       notEmpty: true,
     },
   },
+  message: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
 });
 
 module.exports = Transaction;

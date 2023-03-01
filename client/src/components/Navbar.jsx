@@ -60,7 +60,10 @@ const Navbar = () => {
               } z-10 top-14 `}
             >
               <div className="flex flex-col text-black space-y-2 text-lg">
-                <a className="flex items-center cursor-pointer hover:text-[#2952e3]">
+                <a
+                  href="/profile"
+                  className="flex items-center cursor-pointer hover:text-[#2952e3]"
+                >
                   <FiUser />
                   Profile
                 </a>

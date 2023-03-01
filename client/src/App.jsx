@@ -5,6 +5,7 @@ import {
   Transactions,
   Testimonials,
   Login,
+  Profile,
 } from "./components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -28,6 +29,7 @@ const App = () => {
             />
 
             <Route path="/login" element={<Login />} />
+            <Route path="profile" element={<Profile />} />
 
             {/* <Route path="*" element={<NotFound />} /> */}
           </Routes>

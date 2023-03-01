@@ -2,6 +2,7 @@ const Sequelize = require("sequelize");
 const sequelize = require("../database");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const Transaction = require("./Transaction");
 require("dotenv").config();
 
 const User = sequelize.define("User", {
@@ -56,7 +57,7 @@ User.findByToken = async (token) => {
     console.log(token);
     const { userId } = await jwt.verify(token, process.env.JWT);
 
-    const user = await User.findByPk(userId);
+    const user = await User.findByPk(userId, { include: Transaction });
     if (user) {
       return user;
     }

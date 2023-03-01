@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { FiUser, FiMail, FiLock } from "react-icons/fi";
+import { fetchUser, createUser } from "../store/user";
 
 const Input = ({ placeholder, name, type, formData, setFormData, icon }) => (
   <div className="w-full">
@@ -11,7 +14,7 @@ const Input = ({ placeholder, name, type, formData, setFormData, icon }) => (
         placeholder={placeholder}
         type={type}
         step="0.0001"
-        value={formData}
+        value={formData[name]}
         onChange={(e) => setFormData({ ...formData, [name]: e.target.value })}
         className="pl-8 my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
       />
@@ -25,6 +28,34 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [tokenExist, setTokenExist] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = (type) => {
+    console.log(type);
+    if (type === "login") {
+      try {
+        dispatch(fetchUser(formData));
+        setTokenExist(true);
+      } catch (error) {
+        window.alert(error);
+      }
+    } else {
+      try {
+        dispatch(createUser(formData));
+        setTokenExist(true);
+      } catch (error) {
+        window.alert(error);
+      }
+    }
+  };
+
+  //   if (tokenExist) {
+  //     const token = useSelector((state) => state.user.token);
+  //     window.localStorage.setItem(token);
+  //     navigate("/");
+  //   }
 
   return (
     <div className="flex w-full justify-center items-center">
@@ -38,7 +69,7 @@ const Login = () => {
             placeholder="John Doe"
             name="name"
             type="text"
-            formData={formData.name}
+            formData={formData}
             setFormData={setFormData}
             icon={<FiUser className="absolute text-white z-10 top-4 left-2" />}
           />
@@ -47,7 +78,7 @@ const Login = () => {
             placeholder="johndoe@gmail.com"
             name="email"
             type="email"
-            formData={formData.name}
+            formData={formData}
             setFormData={setFormData}
             icon={<FiMail className="absolute text-white z-10 top-4 left-2" />}
           />
@@ -56,7 +87,7 @@ const Login = () => {
             placeholder="Enter password"
             name="password"
             type="password"
-            formData={formData.name}
+            formData={formData}
             setFormData={setFormData}
             icon={<FiLock className="absolute text-white z-10 top-4 left-2" />}
           />
@@ -64,10 +95,16 @@ const Login = () => {
           <div className="h-[1px] w-full my-2 bg-gray-400" />
 
           <div className="flex w-full justify-between space-x-4">
-            <button className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer">
+            <button
+              onClick={() => handleSubmit("login")}
+              className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer"
+            >
               Login
             </button>
-            <button className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer">
+            <button
+              onClick={() => handleSubmit("signup")}
+              className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer"
+            >
               Signup
             </button>
           </div>

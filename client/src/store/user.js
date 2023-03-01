@@ -38,9 +38,12 @@ const removeUser = (user) => {
 // THUNKS
 export const fetchUser = (user) => {
   return async (dispatch) => {
-    const { data } = axios.post("/api/user", user);
-    dispatch(setUser(data));
     try {
+      const { data } = await axios.post(
+        "http://localhost:1337/api/user/login",
+        user
+      );
+      dispatch(setUser(data));
     } catch (error) {
       console.log(error);
     }
@@ -49,9 +52,9 @@ export const fetchUser = (user) => {
 
 export const createUser = (user) => {
   return async (dispatch) => {
-    const { data } = axios.post("/api/user", user);
-    dispatch(addUser(data));
     try {
+      const { data } = await axios.post("http://localhost:1337/api/user", user);
+      dispatch(addUser(data));
     } catch (error) {
       console.log(error);
     }

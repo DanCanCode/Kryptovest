@@ -2,6 +2,7 @@ const Sequelize = require("sequelize");
 const sequelize = require("../database");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+require("dotenv").config();
 
 const User = sequelize.define("User", {
   id: {
@@ -20,6 +21,7 @@ const User = sequelize.define("User", {
   email: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
     validate: {
       notEmpty: true,
       isEmail: true,

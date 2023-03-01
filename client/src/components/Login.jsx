@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FiUser, FiMail, FiLock } from "react-icons/fi";
@@ -32,30 +32,34 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const token = useSelector((state) => state.user.token);
+
+  useEffect(() => {
+    if (window.localStorage.getItem("token")) {
+      navigate("/");
+    } else if (token) {
+      setTokenExist(true);
+      window.localStorage.setItem("token", token);
+      navigate("/");
+    }
+  }, [token, window.localStorage]);
+
   const handleSubmit = (type) => {
     console.log(type);
     if (type === "login") {
       try {
         dispatch(fetchUser(formData));
-        setTokenExist(true);
       } catch (error) {
         window.alert(error);
       }
     } else {
       try {
         dispatch(createUser(formData));
-        setTokenExist(true);
       } catch (error) {
         window.alert(error);
       }
     }
   };
-
-  //   if (tokenExist) {
-  //     const token = useSelector((state) => state.user.token);
-  //     window.localStorage.setItem(token);
-  //     navigate("/");
-  //   }
 
   return (
     <div className="flex w-full justify-center items-center">

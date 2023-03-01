@@ -36,6 +36,24 @@ const removeUser = (user) => {
 };
 
 // THUNKS
+export const me = () => {
+  return async (dispatch) => {
+    try {
+      const token = window.localStorage.getItem("token");
+      if (token) {
+        const { data } = await axios.get("http://localhost:1337/api/user/me", {
+          headers: {
+            authorization: token,
+          },
+        });
+        dispatch(setUser(data));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const fetchUser = (user) => {
   return async (dispatch) => {
     try {
@@ -45,7 +63,7 @@ export const fetchUser = (user) => {
       );
       dispatch(setUser(data));
     } catch (error) {
-      console.log(error);
+      window.alert("Please make sure all fields are filled out correctly.");
     }
   };
 };
@@ -56,7 +74,11 @@ export const createUser = (user) => {
       const { data } = await axios.post("http://localhost:1337/api/user", user);
       dispatch(addUser(data));
     } catch (error) {
-      console.log(error);
+      if (error.response.data == "Validation error") {
+        window.alert("This email is already in use.");
+      } else {
+        window.alert("Please make sure all fields are filled out correctly.");
+      }
     }
   };
 };

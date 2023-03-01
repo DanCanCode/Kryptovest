@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
+import { FiUser, FiLogOut, FiTool } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { me } from "../store/user";
@@ -20,6 +21,7 @@ const NavbarItem = ({ title, classProps }) => {
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [toggleProfile, setToggleProfile] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -44,12 +46,37 @@ const Navbar = () => {
           <NavbarItem key={title + index} title={title} />
         ))}
         {userData.id ? (
-          <li>
+          <li className="relative">
             <img
+              onClick={() => setToggleProfile(!toggleProfile)}
               src={userData.image}
               alt="user image"
-              className="w-12 h-12 rounded-full active:border-2 border-blue-500"
+              className="w-12 h-12 rounded-full active:border-2 border-[#2952e3] cursor-pointer"
             />
+
+            <div
+              className={`bg-white rounded-md  p-4 ${
+                toggleProfile ? "absolute" : "hidden"
+              } z-10 top-14 `}
+            >
+              <div className="flex flex-col text-black space-y-2 text-lg">
+                <a className="flex items-center cursor-pointer hover:text-[#2952e3]">
+                  <FiUser />
+                  Profile
+                </a>
+                <a className="flex items-center cursor-pointer hover:text-[#2952e3]">
+                  <FiTool />
+                  Settings
+                </a>
+                <p
+                  onClick={() => window.localStorage.removeItem("token")}
+                  className="flex items-center cursor-pointer hover:text-[#2952e3]"
+                >
+                  <FiLogOut />
+                  Logout
+                </p>
+              </div>
+            </div>
           </li>
         ) : (
           <li

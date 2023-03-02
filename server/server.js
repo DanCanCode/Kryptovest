@@ -30,7 +30,7 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 1337;
 const init = () => {
   try {
-    sequelize.sync({ force: true }).catch((error) => console.error(error));
+    sequelize.sync().catch((error) => console.error(error));
     app.listen(PORT, () => {
       console.log(`Server running on port: http://localhost:${PORT}`);
     });

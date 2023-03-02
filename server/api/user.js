@@ -31,7 +31,6 @@ router.post("/", async (req, res, next) => {
 
 router.post("/transaction", async (req, res, next) => {
   try {
-    console.log(req.body);
     const {
       addressTo,
       addressFrom,
@@ -52,7 +51,7 @@ router.post("/transaction", async (req, res, next) => {
         keyword,
         message,
         timestamp,
-        userId: user.dataValues.id,
+        UserId: user.dataValues.id,
       });
     }
   } catch (error) {

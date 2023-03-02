@@ -6,6 +6,7 @@ import {
   Testimonials,
   Login,
   Profile,
+  Settings,
 } from "./components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -29,7 +30,8 @@ const App = () => {
             />
 
             <Route path="/login" element={<Login />} />
-            <Route path="profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/settings" element={<Settings />} />
 
             {/* <Route path="*" element={<NotFound />} /> */}
           </Routes>

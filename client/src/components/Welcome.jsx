@@ -203,13 +203,13 @@ const Welcome = () => {
               handleChange={handleChange}
             />
             <Input
-              placeholder="Keyword (Gif)"
+              placeholder="Message"
               name="keyword"
               type="text"
               handleChange={handleChange}
             />
             <Input
-              placeholder="Enter Message"
+              placeholder="Keyword (Gif)"
               name="message"
               type="text"
               handleChange={handleChange}

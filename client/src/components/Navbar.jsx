@@ -67,7 +67,10 @@ const Navbar = () => {
                   <FiUser />
                   Profile
                 </a>
-                <a className="flex items-center cursor-pointer hover:text-[#2952e3]">
+                <a
+                  href="/settings"
+                  className="flex items-center cursor-pointer hover:text-[#2952e3]"
+                >
                   <FiTool />
                   Settings
                 </a>

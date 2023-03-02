@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useFetch from "../hooks/useFetch";
 import { me } from "../store/user";
+import { motion } from "framer-motion";
 
 const TransactionCard = ({
   addressTo,
@@ -84,6 +85,7 @@ const Profile = () => {
   }, [window.localStorage]);
 
   const userData = useSelector((state) => state.user);
+
   return (
     <div className="flex w-full justify-center items-center">
       <div className="flex flex-col justify-center items-center md:p-20 py-12 px-4  text-white">
@@ -103,8 +105,8 @@ const Profile = () => {
           </h2>
 
           <div className="flex flex-wrap justify-center items-center mt-10">
-            {userData?.Trasactions?.length ? (
-              userData.Trasactions.map((tran, i) => {
+            {userData?.Transactions?.length ? (
+              userData.Transactions.map((tran, i) => {
                 return <TransactionCard key={i} {...tran} />;
               })
             ) : (

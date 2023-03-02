@@ -30,7 +30,7 @@ const Transaction = sequelize.define("Transaction", {
     },
   },
   amount: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.FLOAT,
     allowNull: false,
   },
   keyword: {

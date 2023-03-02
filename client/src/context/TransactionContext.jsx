@@ -139,6 +139,25 @@ export const TransactionProvider = ({ children }) => {
         message
       );
 
+      if (window.localStorage.getItem("token")) {
+        console.log("inside of send transaction local storage");
+        await fetch("http://localhost:1337/api/user/transaction", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            addressTo: addressTo,
+            addressFrom: currentAccount,
+            amount: amount,
+            keyword: keyword,
+            message: message,
+            timestamp: new Date().toLocaleString(),
+            token: window.localStorage.getItem("token"),
+          }),
+        });
+      }
+
       setIsLoading(true);
       console.log(`Loading ${transactionHash.hash}`);
       await transactionHash.wait();

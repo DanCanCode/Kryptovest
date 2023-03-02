@@ -43,7 +43,10 @@ const Testimonials = () => {
 
         <div className="text-white/60 mt-5 text-center">
           <p>hear what others have to say!</p>
-          <p className="text-xs">(these are not real testimonials)</p>
+          <p className="text-xs">
+            (these are <span className="text-red-400">not</span> real
+            testimonials)
+          </p>
         </div>
 
         <div className="flex md:flex-row flex-col justify-center items-center mt-5 md:flex-wrap">

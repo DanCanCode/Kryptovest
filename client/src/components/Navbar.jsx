@@ -64,21 +64,21 @@ const Navbar = () => {
                   href="/profile"
                   className="flex items-center cursor-pointer hover:text-[#2952e3]"
                 >
-                  <FiUser />
+                  <FiUser className="mr-2" />
                   Profile
                 </a>
                 <a
                   href="/settings"
                   className="flex items-center cursor-pointer hover:text-[#2952e3]"
                 >
-                  <FiTool />
+                  <FiTool className="mr-2" />
                   Settings
                 </a>
                 <p
                   onClick={() => window.localStorage.removeItem("token")}
                   className="flex items-center cursor-pointer hover:text-[#2952e3]"
                 >
-                  <FiLogOut />
+                  <FiLogOut className="mr-2" />
                   Logout
                 </p>
               </div>

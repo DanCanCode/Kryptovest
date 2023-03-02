@@ -85,7 +85,8 @@ export const createUser = (user) => {
 
 export const updateUser = (user) => {
   return async (dispatch) => {
-    const { data } = axios.put("/api/user", user);
+    const { data } = await axios.put("http://localhost:1337/api/user", user);
+    dispatch(editUser(data));
     try {
     } catch (error) {
       console.log(error);

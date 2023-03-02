@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FiUser, FiMail, FiLock } from "react-icons/fi";
-import { me } from "../store/user";
+import { me, updateUser, deleteUser } from "../store/user";
 
 const Input = ({
   placeholder,
@@ -48,6 +48,21 @@ const Settings = () => {
     }
   }, [window.localStorage]);
 
+  const handleUpdate = (e, type) => {
+    e.preventDefault;
+
+    if (formData[type].length) {
+      dispatch(updateUser({ ...userData, [type]: formData[type] }));
+      setFormData({ ...formData, [type]: "" });
+    } else {
+      window.alert("Please fill out field");
+    }
+  };
+
+  const handleDelete = (e) => {
+    e.preventDefault;
+  };
+
   const userData = useSelector((state) => state.user);
 
   return (
@@ -56,12 +71,26 @@ const Settings = () => {
 
       <div className="flex flex-col p-6 space-y-2">
         <div className="flex justify-between items-center p-4 border-b">
-          <img
-            src={userData.image}
-            alt="user image"
-            className="rounded-full w-24 h-24"
-          />
-          <button className="text-white border-[1px] py-2 px-4 border-[#3d4f7c] rounded-full cursor-pointer">
+          <div className="flex items-center space-x-4">
+            <img
+              src={userData.image}
+              alt="user image"
+              className="rounded-full w-24 h-24"
+            />
+            <input
+              type="file"
+              onChange={(e) =>
+                setFormData({ ...formData, image: e.target.value })
+              }
+              value={formData.image}
+              name="image"
+              accept="image/*"
+            />
+          </div>
+          <button
+            onClick={(e) => handleUpdate(e, "image")}
+            className="text-white border-[1px] py-2 px-4 border-[#3d4f7c] rounded-full cursor-pointer"
+          >
             Upload Image
           </button>
         </div>
@@ -76,7 +105,10 @@ const Settings = () => {
             setFormData={setFormData}
             icon={<FiUser className="absolute text-white z-10 top-4 left-2" />}
           />
-          <button className="text-white border-[1px] py-2 px-4 border-[#3d4f7c] rounded-full cursor-pointer">
+          <button
+            onClick={(e) => handleUpdate(e, "name")}
+            className="text-white border-[1px] py-2 px-4 border-[#3d4f7c] rounded-full cursor-pointer"
+          >
             Update
           </button>
         </div>
@@ -91,7 +123,10 @@ const Settings = () => {
             setFormData={setFormData}
             icon={<FiUser className="absolute text-white z-10 top-4 left-2" />}
           />
-          <button className="text-white border-[1px] py-2 px-4 border-[#3d4f7c] rounded-full cursor-pointer">
+          <button
+            onClick={(e) => handleUpdate(e, "email")}
+            className="text-white border-[1px] py-2 px-4 border-[#3d4f7c] rounded-full cursor-pointer"
+          >
             Update
           </button>
         </div>
@@ -106,7 +141,10 @@ const Settings = () => {
             setFormData={setFormData}
             icon={<FiUser className="absolute text-white z-10 top-4 left-2" />}
           />
-          <button className="text-white border-[1px] py-2 px-4 border-[#3d4f7c] rounded-full cursor-pointer">
+          <button
+            onClick={(e) => handleUpdate(e, "password")}
+            className="text-white border-[1px] py-2 px-4 border-[#3d4f7c] rounded-full cursor-pointer"
+          >
             Update
           </button>
         </div>

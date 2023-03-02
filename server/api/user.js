@@ -59,8 +59,15 @@ router.post("/transaction", async (req, res, next) => {
   }
 });
 
-router.put("/", (req, res, next) => {
+router.put("/", async (req, res, next) => {
   try {
+    console.log(req.body);
+    const user = await User.update(req.body, {
+      where: {
+        id: req.body.id,
+      },
+    });
+    res.send(user);
   } catch (error) {
     next(error);
   }

@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Pagination from "./Pagination";
 import useFetch from "../hooks/useFetch";
 import { me } from "../store/user";
 import { motion } from "framer-motion";
@@ -76,6 +77,9 @@ const TransactionCard = ({
 const Profile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage, setPostPerPage] = useState(4);
+
   useEffect(() => {
     if (!window.localStorage.getItem("token")) {
       navigate("/login");
@@ -85,6 +89,8 @@ const Profile = () => {
   }, [window.localStorage]);
 
   const userData = useSelector((state) => state.user);
+  const lastPostIndex = currentPage * postPerPage;
+  const firstPostIndex = lastPostIndex - postPerPage;
 
   return (
     <div className="flex w-full justify-center items-center">
@@ -106,13 +112,22 @@ const Profile = () => {
 
           <div className="flex flex-wrap justify-center items-center mt-10">
             {userData?.Transactions?.length ? (
-              userData.Transactions.reverse().map((tran, i) => {
-                return <TransactionCard key={i} {...tran} />;
-              })
+              userData.Transactions.reverse()
+                .slice(firstPostIndex, lastPostIndex)
+                .map((tran, i) => {
+                  return <TransactionCard key={i} {...tran} />;
+                })
             ) : (
               <p className="text-lg">No Previous Transactions</p>
             )}
           </div>
+
+          <Pagination
+            totalPosts={userData?.Transactions?.length}
+            postPerPage={postPerPage}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
         </div>
       </div>
     </div>

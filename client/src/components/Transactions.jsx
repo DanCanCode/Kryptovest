@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 import dummyData from "../utils/dummyData";
 import useFetch from "../hooks/useFetch";
+import Pagination from "./Pagination";
 import { motion } from "framer-motion";
 
 const TransactionCard = ({
@@ -74,10 +75,14 @@ const TransactionCard = ({
 
 const Transactions = () => {
   const { currentAccount, transactions } = useContext(TransactionContext);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage, setPostPerPage] = useState(4);
 
+  const lastPostIndex = currentPage * postPerPage;
+  const firstPostIndex = lastPostIndex - postPerPage;
   return (
-    <div className="flex  w-full justify-center items-center 2xl:p-20 ">
-      <div className="flex flex-col items-center md:p-12 py-12 px-4">
+    <div className="flex  w-full justify-center items-center 2xl:p-20">
+      <div className="flex flex-col items-center md:p-12 py-12 px-4 overflow-hidden">
         {currentAccount ? (
           <h3 className="text-white text-3xl text-center py-2 border-b inline-block">
             Latest Transactions
@@ -89,10 +94,20 @@ const Transactions = () => {
         )}
 
         <div className="flex flex-wrap justify-center items-center mt-10">
-          {transactions.reverse().map((tran, i) => {
-            return <TransactionCard key={i} {...tran} />;
-          })}
+          {transactions
+            .reverse()
+            .slice(firstPostIndex, lastPostIndex)
+            .map((tran, i) => {
+              return <TransactionCard key={i} {...tran} />;
+            })}
         </div>
+
+        <Pagination
+          totalPosts={transactions.length}
+          postPerPage={postPerPage}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );

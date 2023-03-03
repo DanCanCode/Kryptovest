@@ -133,14 +133,14 @@ const Welcome = () => {
               color="bg-gradient-to-r from-[#d08200] to-[#ffd143]"
               title="Send & Receive Ethereum"
               icon={<SiEthereum fontSize={21} className="text-white" />}
-              subtitle="Security is guarenteed. We always maintain privacy and the quality of our products."
+              subtitle="Use the power of the blockchain to send and receive crypto within seconds."
             />
             <ServiceCard
               order="2"
               color="bg-gradient-to-r from-[#a10000] to-[#ff2424]"
               title="Web 3.0 & Blockchain"
               icon={<SlGlobe fontSize={21} className="text-white" />}
-              subtitle="Security is guarenteed. We always maintain privacy and the quality of our products."
+              subtitle="Web 3 is evolutionizing the way we use the internet by prioritizing privacy."
             />
           </div>
         </div>

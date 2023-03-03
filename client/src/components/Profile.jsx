@@ -93,20 +93,20 @@ const Profile = () => {
           <img
             src={userData.image}
             alt="user image"
-            className="w-48 h-48 rounded-full"
+            className="w-48 h-48 rounded-full object-cover object-center"
           />
           <h3 className="text-3xl">{userData.name}</h3>
           <p className="text-sm opacity-60">{userData.email}</p>
         </div>
 
-        <div className="mt-12">
+        <div className="flex flex-col items-center mt-12 ">
           <h2 className="text-3xl text-center py-2 border-b inline-block">
             Previous Transactions
           </h2>
 
           <div className="flex flex-wrap justify-center items-center mt-10">
             {userData?.Transactions?.length ? (
-              userData.Transactions.map((tran, i) => {
+              userData.Transactions.reverse().map((tran, i) => {
                 return <TransactionCard key={i} {...tran} />;
               })
             ) : (

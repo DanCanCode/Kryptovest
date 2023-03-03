@@ -3,16 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FiUser, FiMail, FiLock } from "react-icons/fi";
 import { me, updateUser, deleteUser } from "../store/user";
+import FileBase from "react-file-base64";
 
-const Input = ({
-  placeholder,
-  name,
-  type,
-  userData,
-  formData,
-  setFormData,
-  icon,
-}) => (
+const Input = ({ name, type, userData, formData, setFormData, icon }) => (
   <div>
     <label className="text-white font-semibold">{name}:</label>
 
@@ -61,6 +54,9 @@ const Settings = () => {
 
   const handleDelete = (e) => {
     e.preventDefault;
+    dispatch(deleteUser(userData.id));
+    window.alert("Account successfully deleted.");
+    window.localStorage.removeItem("token");
   };
 
   const userData = useSelector((state) => state.user);
@@ -73,20 +69,20 @@ const Settings = () => {
         <div className="flex justify-between items-center p-4 border-b">
           <div className="flex items-center space-x-4">
             <img
+              id="user-image"
               src={userData.image}
               alt="user image"
-              className="rounded-full w-24 h-24"
+              className="rounded-full w-24 h-24 object-cover object-center"
             />
-            <input
+            <FileBase
               type="file"
-              onChange={(e) =>
-                setFormData({ ...formData, image: e.target.value })
+              multiple={false}
+              onDone={({ base64 }) =>
+                setFormData({ ...formData, image: base64 })
               }
-              value={formData.image}
-              name="image"
-              accept="image/*"
             />
           </div>
+
           <button
             onClick={(e) => handleUpdate(e, "image")}
             className="text-white border-[1px] py-2 px-4 border-[#3d4f7c] rounded-full cursor-pointer"
@@ -97,7 +93,6 @@ const Settings = () => {
 
         <div className="flex justify-between items-center px-4 py-2">
           <Input
-            placeholder="John Doe"
             name="name"
             type="text"
             userData={userData}
@@ -115,7 +110,6 @@ const Settings = () => {
 
         <div className="flex justify-between items-center px-4 py-2">
           <Input
-            placeholder="johndoe@gmail.com"
             name="email"
             type="email"
             userData={userData}
@@ -133,7 +127,6 @@ const Settings = () => {
 
         <div className="flex justify-between items-center px-4 py-2">
           <Input
-            placeholder="Enter password"
             name="password"
             type="password"
             userData={userData}
@@ -156,7 +149,10 @@ const Settings = () => {
             <p className="font-semibold text-lg">Delete Account:</p>
             <p>Once you delete, there is no going back.</p>
           </div>
-          <button className="text-red-500 border-[1px] py-2 px-4 border-red-500 rounded-full cursor-pointer">
+          <button
+            onClick={handleDelete}
+            className="text-red-500 border-[1px] py-2 px-4 border-red-500 rounded-full cursor-pointer"
+          >
             Delete Account
           </button>
         </div>

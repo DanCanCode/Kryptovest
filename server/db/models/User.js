@@ -37,7 +37,7 @@ const User = sequelize.define("User", {
   },
 
   image: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     defaultValue:
       "https://www.creative.travel/wp-content/uploads/2017/05/blank-profile-picture-973460_960_720-e1501484141348.png",
   },

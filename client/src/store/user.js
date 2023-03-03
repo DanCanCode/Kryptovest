@@ -94,8 +94,10 @@ export const updateUser = (user) => {
   };
 };
 
-export const deleteUser = (user) => {
+export const deleteUser = (id) => {
   return async (dispatch) => {
+    const { data } = await axios.delete(`http://localhost:1337/api/user/${id}`);
+    dispatch(removeUser(data));
     try {
     } catch (error) {
       console.log(error);

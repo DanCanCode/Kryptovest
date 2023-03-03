@@ -51,7 +51,7 @@ const Navbar = () => {
               onClick={() => setToggleProfile(!toggleProfile)}
               src={userData.image}
               alt="user image"
-              className="w-12 h-12 rounded-full active:border-2 border-[#2952e3] cursor-pointer"
+              className="w-12 h-12 rounded-full active:border-2 border-[#2952e3] cursor-pointer object-cover object-center"
             />
 
             <div

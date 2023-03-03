@@ -73,8 +73,12 @@ router.put("/", async (req, res, next) => {
   }
 });
 
-router.delete("/", (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
+    console.log(req.params.id);
+    const userToDelete = await User.findByPk(req.params.id);
+    await userToDelete.destroy();
+    res.send(userToDelete);
   } catch (error) {
     next(error);
   }

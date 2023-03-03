@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
 
 // Allow all requests from the Netlify app
 const netlifyCorsOptions = {
-  origin: "https://kryptovest.netlify.app/",
+  origin: "https://kryptovest.netlify.app",
   methods: ["GET", "POST", "PUT", "DELETE"],
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };

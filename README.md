@@ -1,6 +1,6 @@
 # Kryptovest
 
-![Kryptovest](./client/public/kryptovest.gif)
+![Kryptovest](./my-app/client/public/kryptovest.gif)
 
 ## Description
 

@@ -41,11 +41,14 @@ export const me = () => {
     try {
       const token = window.localStorage.getItem("token");
       if (token) {
-        const { data } = await axios.get("http://localhost:1337/api/user/me", {
-          headers: {
-            authorization: token,
-          },
-        });
+        const { data } = await axios.get(
+          "https://kryptovest.netlify.app/api/user/me",
+          {
+            headers: {
+              authorization: token,
+            },
+          }
+        );
         dispatch(setUser(data));
       }
     } catch (error) {
@@ -58,7 +61,7 @@ export const fetchUser = (user) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:1337/api/user/login",
+        "https://kryptovest.netlify.app/api/user/login",
         user
       );
       dispatch(setUser(data));
@@ -71,7 +74,10 @@ export const fetchUser = (user) => {
 export const createUser = (user) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post("http://localhost:1337/api/user", user);
+      const { data } = await axios.post(
+        "https://kryptovest.netlify.app/api/user",
+        user
+      );
       dispatch(addUser(data));
     } catch (error) {
       if (error.response.data == "Validation error") {
@@ -85,7 +91,10 @@ export const createUser = (user) => {
 
 export const updateUser = (user) => {
   return async (dispatch) => {
-    const { data } = await axios.put("http://localhost:1337/api/user", user);
+    const { data } = await axios.put(
+      "https://kryptovest.netlify.app/api/user",
+      user
+    );
     dispatch(editUser(data));
     try {
     } catch (error) {
@@ -96,7 +105,9 @@ export const updateUser = (user) => {
 
 export const deleteUser = (id) => {
   return async (dispatch) => {
-    const { data } = await axios.delete(`http://localhost:1337/api/user/${id}`);
+    const { data } = await axios.delete(
+      `https://kryptovest.netlify.app/api/user/${id}`
+    );
     dispatch(removeUser(data));
     try {
     } catch (error) {

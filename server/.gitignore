@@ -1,2 +1,4 @@
 mode_modules
 .env.local
+.env
+client/.env

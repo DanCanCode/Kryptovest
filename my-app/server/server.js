@@ -9,7 +9,15 @@ module.exports = app;
 // Body parsing middleware
 app.use(bodyParser.json({ limit: "100mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
-app.use(cors());
+
+// Allow all requests from the Netlify app
+const netlifyCorsOptions = {
+  origin: "https://kryptovest.netlify.app/",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(netlifyCorsOptions));
 
 // Include our routes!
 app.use("/api/user", require("./api/user"));

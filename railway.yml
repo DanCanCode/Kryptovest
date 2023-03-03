@@ -1,0 +1,23 @@
+version: v1.0
+name: my-app
+
+env:
+  NODE_VERSION: "16.x"
+
+build:
+  env:
+    CI: "true"
+  steps:
+    - name: Install Dependencies
+      command: npm install
+    - name: Build
+      command: npm run build
+
+deploy:
+  env:
+    NODE_ENV: "production"
+  steps:
+    - name: Install Dependencies
+      command: npm install --production
+    - name: Start
+      command: npm start

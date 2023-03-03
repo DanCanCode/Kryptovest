@@ -18,6 +18,7 @@ const netlifyCorsOptions = {
 };
 
 app.use(cors(netlifyCorsOptions));
+// app.use(cors());
 
 // Include our routes!
 app.use("/api/user", require("./api/user"));

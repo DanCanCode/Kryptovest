@@ -31,10 +31,22 @@ const Navbar = () => {
     dispatch(me());
   }, []);
 
-  const displayProfile = () => {
-    if (userData.id) {
-      return (
-        <li className="relative">
+  return (
+    <nav className="w-full flex md:justify-center justify-between items-center p-4">
+      <div className="md:flex-[0.5] flex-initial justify-center items-center">
+        <img
+          onClick={() => navigate("/")}
+          src={logo}
+          alt="logo"
+          className="w-48 cursor-pointer"
+        />
+      </div>
+
+      <ul className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
+        {["Market", "Exchange", "Tutorials", "News"].map((title, index) => (
+          <NavbarItem key={title + index} title={title} />
+        ))}
+        <li className={`relative ${userData.id ? "list-item" : "hidden"}`}>
           <img
             onClick={() => setToggleProfile(!toggleProfile)}
             src={userData.image}
@@ -72,35 +84,15 @@ const Navbar = () => {
             </div>
           </div>
         </li>
-      );
-    } else {
-      return (
+
         <li
           onClick={() => navigate("/login")}
-          className="bg-[#2952e3] py-2 px-7 text-center mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]"
+          className={`bg-[#2952e3] py-2 px-7 text-center mx-4 rounded-full cursor-pointer hover:bg-[#2546bd] ${
+            userData.id ? "hidden" : "list-item"
+          }`}
         >
           Login
         </li>
-      );
-    }
-  };
-
-  return (
-    <nav className="w-full flex md:justify-center justify-between items-center p-4">
-      <div className="md:flex-[0.5] flex-initial justify-center items-center">
-        <img
-          onClick={() => navigate("/")}
-          src={logo}
-          alt="logo"
-          className="w-48 cursor-pointer"
-        />
-      </div>
-
-      <ul className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
-        {["Market", "Exchange", "Tutorials", "News"].map((title, index) => (
-          <NavbarItem key={title + index} title={title} />
-        ))}
-        {displayProfile()}
       </ul>
 
       <div className="flex relative">

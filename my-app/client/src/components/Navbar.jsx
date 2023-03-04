@@ -31,6 +31,60 @@ const Navbar = () => {
     dispatch(me());
   }, []);
 
+  const displayProfile = () => {
+    if (userData.id) {
+      return (
+        <li className="relative">
+          <img
+            onClick={() => setToggleProfile(!toggleProfile)}
+            src={userData.image}
+            alt="user image"
+            className="w-12 h-12 rounded-full active:border-2 border-[#2952e3] cursor-pointer object-cover object-center"
+          />
+
+          <div
+            className={`bg-white rounded-md  p-4 ${
+              toggleProfile ? "absolute" : "hidden"
+            } z-10 top-14 `}
+          >
+            <div className="flex flex-col text-black space-y-2 text-lg">
+              <a
+                href="/profile"
+                className="flex items-center cursor-pointer hover:text-[#2952e3]"
+              >
+                <FiUser className="mr-2" />
+                Profile
+              </a>
+              <a
+                href="/settings"
+                className="flex items-center cursor-pointer hover:text-[#2952e3]"
+              >
+                <FiTool className="mr-2" />
+                Settings
+              </a>
+              <p
+                onClick={() => window.localStorage.removeItem("token")}
+                className="flex items-center cursor-pointer hover:text-[#2952e3]"
+              >
+                <FiLogOut className="mr-2" />
+                Logout
+              </p>
+            </div>
+          </div>
+        </li>
+      );
+    } else {
+      return (
+        <li
+          onClick={() => navigate("/login")}
+          className="bg-[#2952e3] py-2 px-7 text-center mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]"
+        >
+          Login
+        </li>
+      );
+    }
+  };
+
   return (
     <nav className="w-full flex md:justify-center justify-between items-center p-4">
       <div className="md:flex-[0.5] flex-initial justify-center items-center">
@@ -46,53 +100,7 @@ const Navbar = () => {
         {["Market", "Exchange", "Tutorials", "News"].map((title, index) => (
           <NavbarItem key={title + index} title={title} />
         ))}
-        {userData.id ? (
-          <li className="relative">
-            <img
-              onClick={() => setToggleProfile(!toggleProfile)}
-              src={userData.image}
-              alt="user image"
-              className="w-12 h-12 rounded-full active:border-2 border-[#2952e3] cursor-pointer object-cover object-center"
-            />
-
-            <div
-              className={`bg-white rounded-md  p-4 ${
-                toggleProfile ? "absolute" : "hidden"
-              } z-10 top-14 `}
-            >
-              <div className="flex flex-col text-black space-y-2 text-lg">
-                <a
-                  href="/profile"
-                  className="flex items-center cursor-pointer hover:text-[#2952e3]"
-                >
-                  <FiUser className="mr-2" />
-                  Profile
-                </a>
-                <a
-                  href="/settings"
-                  className="flex items-center cursor-pointer hover:text-[#2952e3]"
-                >
-                  <FiTool className="mr-2" />
-                  Settings
-                </a>
-                <p
-                  onClick={() => window.localStorage.removeItem("token")}
-                  className="flex items-center cursor-pointer hover:text-[#2952e3]"
-                >
-                  <FiLogOut className="mr-2" />
-                  Logout
-                </p>
-              </div>
-            </div>
-          </li>
-        ) : (
-          <li
-            onClick={() => navigate("/login")}
-            className="bg-[#2952e3] py-2 px-7 text-center mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]"
-          >
-            Login
-          </li>
-        )}
+        {displayProfile()}
       </ul>
 
       <div className="flex relative">

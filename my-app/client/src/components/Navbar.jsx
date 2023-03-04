@@ -4,7 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { FiUser, FiLogOut, FiTool } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { me } from "../store/user";
+import { me, logout } from "../store/user";
 import logo from "../../public/logo.png";
 
 const NavbarItem = ({ title, classProps }) => {
@@ -30,6 +30,11 @@ const Navbar = () => {
   useEffect(() => {
     dispatch(me());
   }, []);
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+  };
 
   return (
     <nav className="w-full flex md:justify-center justify-between items-center p-4">
@@ -75,7 +80,7 @@ const Navbar = () => {
                 Settings
               </a>
               <p
-                onClick={() => window.localStorage.removeItem("token")}
+                onClick={handleLogout}
                 className="flex items-center cursor-pointer hover:text-[#2952e3]"
               >
                 <FiLogOut className="mr-2" />

@@ -57,6 +57,13 @@ export const me = () => {
   };
 };
 
+export const logout = () => {
+  return async (dispatch) => {
+    window.localStorage.removeItem("token");
+    dispatch(setUser({}));
+  };
+};
+
 export const fetchUser = (user) => {
   return async (dispatch) => {
     try {

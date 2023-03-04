@@ -27,7 +27,7 @@ const Navbar = () => {
 
   useEffect(() => {
     dispatch(me());
-  }, [window.localStorage]);
+  }, [window.localStorage, userData]);
 
   const userData = useSelector((state) => state.user);
   return (

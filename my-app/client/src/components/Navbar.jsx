@@ -25,11 +25,12 @@ const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const userData = useSelector((state) => state.user);
+
   useEffect(() => {
     dispatch(me());
-  }, [window.localStorage, userData]);
+  }, [window.localStorage]);
 
-  const userData = useSelector((state) => state.user);
   return (
     <nav className="w-full flex md:justify-center justify-between items-center p-4">
       <div className="md:flex-[0.5] flex-initial justify-center items-center">

@@ -36,11 +36,11 @@ const Login = () => {
 
   useEffect(() => {
     if (window.localStorage.getItem("token")) {
-      // navigate("/");
+      redirect("/");
     } else if (token) {
       setTokenExist(true);
       window.localStorage.setItem("token", token);
-      // navigate("/");
+      redirect("/");
     }
   }, [token, window.localStorage]);
 
@@ -59,14 +59,6 @@ const Login = () => {
         window.alert(error);
       }
     }
-
-    setFormData({
-      name: "",
-      email: "",
-      password: "",
-    });
-    window.localStorage.setItem("token", token);
-    redirect("/");
   };
 
   return (

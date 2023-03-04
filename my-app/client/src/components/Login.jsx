@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FiUser, FiMail, FiLock } from "react-icons/fi";
 import { fetchUser, createUser } from "../store/user";
@@ -30,17 +30,17 @@ const Login = () => {
   });
   const [tokenExist, setTokenExist] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const token = useSelector((state) => state.user.token);
 
   useEffect(() => {
     if (window.localStorage.getItem("token")) {
-      navigate("/");
+      // navigate("/");
     } else if (token) {
       setTokenExist(true);
       window.localStorage.setItem("token", token);
-      navigate("/");
+      // navigate("/");
     }
   }, [token, window.localStorage]);
 
@@ -59,6 +59,14 @@ const Login = () => {
         window.alert(error);
       }
     }
+
+    setFormData({
+      name: "",
+      email: "",
+      password: "",
+    });
+    window.localStorage.setItem("token", token);
+    redirect("/");
   };
 
   return (

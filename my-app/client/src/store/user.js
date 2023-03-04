@@ -41,11 +41,14 @@ export const me = () => {
     try {
       const token = window.localStorage.getItem("token");
       if (token) {
-        const { data } = await axios.get("/api/user/me", {
-          headers: {
-            authorization: token,
-          },
-        });
+        const { data } = await axios.get(
+          "https://kryptovest.up.railway.app/api/user/me",
+          {
+            headers: {
+              authorization: token,
+            },
+          }
+        );
         dispatch(setUser(data));
       }
     } catch (error) {
@@ -57,7 +60,10 @@ export const me = () => {
 export const fetchUser = (user) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post("/api/user/login", user);
+      const { data } = await axios.post(
+        "https://kryptovest.up.railway.app/api/user/login",
+        user
+      );
       dispatch(setUser(data));
     } catch (error) {
       window.alert("Please make sure all fields are filled out correctly.");
@@ -68,10 +74,14 @@ export const fetchUser = (user) => {
 export const createUser = (user) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post("/api/user", user);
+      const { data } = await axios.post(
+        "https://kryptovest.up.railway.app/api/user",
+        user
+      );
       dispatch(addUser(data));
     } catch (error) {
-      if (error.response.data == "Validation error") {
+      console.log(error);
+      if (error?.response?.data == "Validation error") {
         window.alert("This email is already in use.");
       } else {
         window.alert("Please make sure all fields are filled out correctly.");
@@ -82,7 +92,10 @@ export const createUser = (user) => {
 
 export const updateUser = (user) => {
   return async (dispatch) => {
-    const { data } = await axios.put("/api/user", user);
+    const { data } = await axios.put(
+      "https://kryptovest.up.railway.app/api/user",
+      user
+    );
     dispatch(editUser(data));
     try {
     } catch (error) {
@@ -93,7 +106,9 @@ export const updateUser = (user) => {
 
 export const deleteUser = (id) => {
   return async (dispatch) => {
-    const { data } = await axios.delete(`/api/user/${id}`);
+    const { data } = await axios.delete(
+      `https://kryptovest.up.railway.app/api/user/${id}`
+    );
     dispatch(removeUser(data));
     try {
     } catch (error) {

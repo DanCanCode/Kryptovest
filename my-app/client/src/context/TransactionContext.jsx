@@ -141,7 +141,7 @@ export const TransactionProvider = ({ children }) => {
 
       if (window.localStorage.getItem("token")) {
         console.log("inside of send transaction local storage");
-        await fetch("/api/user/transaction", {
+        await fetch("https://kryptovest.up.railway.app/api/user/transaction", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

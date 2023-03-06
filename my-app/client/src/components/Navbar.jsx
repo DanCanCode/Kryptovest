@@ -29,7 +29,7 @@ const Navbar = () => {
 
   useEffect(() => {
     dispatch(me());
-  }, []);
+  }, [window.localStorage.getItem("token")]);
 
   const handleLogout = (e) => {
     e.preventDefault();

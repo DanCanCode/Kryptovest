@@ -37,25 +37,26 @@ const Login = () => {
   useEffect(() => {
     if (window.localStorage.getItem("token")) {
       navigate("/");
-    } else if (token) {
-      window.localStorage.setItem("token", token);
-      navigate("/");
     }
-  }, [token, window.localStorage]);
+  }, []);
 
-  const handleSubmit = (type) => {
+  const handleSubmit = async (type) => {
     console.log(type);
     if (type === "login") {
       try {
         setLoading(true);
-        dispatch(fetchUser(formData));
+        const userData = dispatch(fetchUser(formData));
+        window.localStorage.setItem("token", userData.token);
+        navigate("/");
       } catch (error) {
         window.alert(error);
       }
     } else {
       try {
         setLoading(true);
-        dispatch(createUser(formData));
+        const userData = dispatch(createUser(formData));
+        window.localStorage.setItem("token", userData.token);
+        navigate("/");
       } catch (error) {
         window.alert(error);
       }

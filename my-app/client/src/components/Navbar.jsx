@@ -147,7 +147,7 @@ const Navbar = () => {
 
             <li
               onClick={() => {
-                navigate("/login");
+                navigate("/profile");
                 setToggleMenu(false);
               }}
               className={`mx-4 cursor-pointer my-2 text-lg ${
@@ -170,8 +170,8 @@ const Navbar = () => {
             </li>
 
             <li
-              onClick={() => {
-                handleLogout();
+              onClick={(e) => {
+                handleLogout(e);
                 setToggleMenu(false);
               }}
               className={`mx-4 cursor-pointer my-2 text-lg ${

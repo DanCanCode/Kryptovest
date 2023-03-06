@@ -39,7 +39,7 @@ const Settings = () => {
     } else {
       dispatch(me());
     }
-  }, [window.localStorage]);
+  }, [window.localStorage.getItem("token")]);
 
   const handleUpdate = (e, type) => {
     e.preventDefault;

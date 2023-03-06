@@ -86,7 +86,7 @@ const Profile = () => {
     } else {
       dispatch(me());
     }
-  }, [window.localStorage]);
+  }, [window.localStorage.getItem("token")]);
 
   const userData = useSelector((state) => state.user);
   const lastPostIndex = currentPage * postPerPage;

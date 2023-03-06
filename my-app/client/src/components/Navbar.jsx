@@ -34,6 +34,7 @@ const Navbar = () => {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    setToggleProfile(false);
   };
 
   return (

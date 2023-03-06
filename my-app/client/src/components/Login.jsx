@@ -45,7 +45,7 @@ const Login = () => {
     if (type === "login") {
       try {
         setLoading(true);
-        const userData = dispatch(fetchUser(formData));
+        const userData = await dispatch(fetchUser(formData));
         console.log(userData);
         window.localStorage.setItem("token", userData);
         navigate("/");
@@ -55,7 +55,7 @@ const Login = () => {
     } else {
       try {
         setLoading(true);
-        const userData = dispatch(createUser(formData));
+        const userData = await dispatch(createUser(formData));
         console.log(userData);
         window.localStorage.setItem("token", userData);
         navigate("/");

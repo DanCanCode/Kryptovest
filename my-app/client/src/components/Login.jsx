@@ -46,7 +46,8 @@ const Login = () => {
       try {
         setLoading(true);
         const userData = dispatch(fetchUser(formData));
-        window.localStorage.setItem("token", userData.token);
+        console.log(userData);
+        window.localStorage.setItem("token", userData);
         navigate("/");
       } catch (error) {
         window.alert(error);
@@ -55,7 +56,8 @@ const Login = () => {
       try {
         setLoading(true);
         const userData = dispatch(createUser(formData));
-        window.localStorage.setItem("token", userData.token);
+        console.log(userData);
+        window.localStorage.setItem("token", userData);
         navigate("/");
       } catch (error) {
         window.alert(error);

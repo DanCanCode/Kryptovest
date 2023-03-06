@@ -132,6 +132,18 @@ const Navbar = () => {
                 classProps="my-2 text-lg"
               />
             ))}
+
+            <li
+              onClick={() => {
+                navigate("/login");
+                setToggleMenu(false);
+              }}
+              className={`mx-4 cursor-pointer my-2 text-lg ${
+                userData.id ? "hidden" : "list-item"
+              }`}
+            >
+              Login
+            </li>
           </ul>
         )}
       </div>

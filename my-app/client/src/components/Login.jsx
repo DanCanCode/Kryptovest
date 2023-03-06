@@ -28,7 +28,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [tokenExist, setTokenExist] = useState(false);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -38,7 +38,6 @@ const Login = () => {
     if (window.localStorage.getItem("token")) {
       navigate("/");
     } else if (token) {
-      setTokenExist(true);
       window.localStorage.setItem("token", token);
       navigate("/");
     }
@@ -48,19 +47,24 @@ const Login = () => {
     console.log(type);
     if (type === "login") {
       try {
+        setLoading(true);
         dispatch(fetchUser(formData));
       } catch (error) {
         window.alert(error);
       }
     } else {
       try {
+        setLoading(true);
         dispatch(createUser(formData));
       } catch (error) {
         window.alert(error);
       }
     }
+
+    setLoading(false);
   };
 
+  console.log(loading);
   return (
     <div className="flex w-full justify-center items-center">
       <div className="flex flex-col md:p-20 py-12 px-4  items-center">
@@ -101,13 +105,15 @@ const Login = () => {
           <div className="flex w-full justify-between space-x-4">
             <button
               onClick={() => handleSubmit("login")}
-              className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer"
+              disabled={loading}
+              className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer disabled:bg-[#3d4f7c] disabled:line-through"
             >
               Login
             </button>
             <button
+              disabled={loading}
               onClick={() => handleSubmit("signup")}
-              className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer"
+              className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer disabled:bg-[#3d4f7c] disabled:line-through"
             >
               Signup
             </button>

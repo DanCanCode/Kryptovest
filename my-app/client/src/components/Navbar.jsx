@@ -29,7 +29,7 @@ const Navbar = () => {
 
   useEffect(() => {
     dispatch(me());
-  }, [userData]);
+  }, [window.localStorage]);
 
   const handleLogout = (e) => {
     e.preventDefault();

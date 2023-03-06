@@ -29,7 +29,7 @@ const Navbar = () => {
 
   useEffect(() => {
     dispatch(me());
-  }, []);
+  }, [userData]);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -143,6 +143,42 @@ const Navbar = () => {
               }`}
             >
               Login
+            </li>
+
+            <li
+              onClick={() => {
+                navigate("/login");
+                setToggleMenu(false);
+              }}
+              className={`mx-4 cursor-pointer my-2 text-lg ${
+                userData.id ? "list-item" : "hidden"
+              }`}
+            >
+              Profile
+            </li>
+
+            <li
+              onClick={() => {
+                navigate("/settings");
+                setToggleMenu(false);
+              }}
+              className={`mx-4 cursor-pointer my-2 text-lg ${
+                userData.id ? "list-item" : "hidden"
+              }`}
+            >
+              Settings
+            </li>
+
+            <li
+              onClick={() => {
+                handleLogout();
+                setToggleMenu(false);
+              }}
+              className={`mx-4 cursor-pointer my-2 text-lg ${
+                userData.id ? "list-item" : "hidden"
+              }`}
+            >
+              Logout
             </li>
           </ul>
         )}
